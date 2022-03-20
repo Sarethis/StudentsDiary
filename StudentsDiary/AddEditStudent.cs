@@ -11,12 +11,24 @@ namespace StudentsDiary
         private int _studentId;
         private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path);
         private Student _student;
+        private List<Group> _groups;
         public AddEditStudent(int id = 0)
         {
             InitializeComponent();
             _studentId = id;
+            
+            _groups = GroupsHelper.GetGroups("Brak");
+            InitGroupsComboBox();
+
             GetStudentData();
+
             tbName.Select();
+        }
+        private void InitGroupsComboBox()
+        {
+            cmbGroup.DataSource = _groups;
+            cmbGroup.DisplayMember = "GroupName";
+            cmbGroup.ValueMember = "Id";
         }
         private void GetStudentData()
         {
@@ -32,7 +44,6 @@ namespace StudentsDiary
         }
         private void FillTextBox()
         {
-            cmbIdGroup.Text = _student.IdGroup;
             tbID.Text = _student.Id.ToString();
             tbName.Text = _student.Name;
             tbSurname.Text = _student.Surname;
@@ -41,6 +52,7 @@ namespace StudentsDiary
             tbEnglish.Text = _student.LangEnglish;
             rtbComments.Text = _student.Comments;
             ckbAdditionalLessons.Checked = _student.AdditionalLesson;
+            cmbGroup.SelectedItem = _groups.FirstOrDefault(x => x.Id == _student.IdGroup);
         }
         private void btnConfirm_Click(object sender, EventArgs e)
         {
@@ -61,7 +73,7 @@ namespace StudentsDiary
         {
             var student = new Student
             {
-                IdGroup = cmbIdGroup.Text,
+                IdGroup = (cmbGroup.SelectedItem as Group).Id,
                 Id = _studentId,
                 Name = tbName.Text,
                 Surname = tbSurname.Text,

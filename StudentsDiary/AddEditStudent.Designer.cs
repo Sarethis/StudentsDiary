@@ -45,7 +45,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.ckbAdditionalLessons = new System.Windows.Forms.CheckBox();
-            this.cmbIdGroup = new System.Windows.Forms.ComboBox();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
             this.lbIdGroup = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -195,16 +195,13 @@
             this.ckbAdditionalLessons.Text = "Dodatkowe\r\nzajęcia:";
             this.ckbAdditionalLessons.UseVisualStyleBackColor = true;
             // 
-            // cmbIdGroup
+            // cmbGroup
             // 
-            this.cmbIdGroup.FormattingEnabled = true;
-            this.cmbIdGroup.Items.AddRange(new object[] {
-            "Grupa A",
-            "Grupa B"});
-            this.cmbIdGroup.Location = new System.Drawing.Point(108, 8);
-            this.cmbIdGroup.Name = "cmbIdGroup";
-            this.cmbIdGroup.Size = new System.Drawing.Size(121, 21);
-            this.cmbIdGroup.TabIndex = 17;
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(108, 8);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(121, 21);
+            this.cmbGroup.TabIndex = 17;
             // 
             // lbIdGroup
             // 
@@ -222,7 +219,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(373, 345);
             this.Controls.Add(this.lbIdGroup);
-            this.Controls.Add(this.cmbIdGroup);
+            this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.ckbAdditionalLessons);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.btnCancel);
@@ -270,7 +267,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnConfirm;
         private System.Windows.Forms.CheckBox ckbAdditionalLessons;
-        private System.Windows.Forms.ComboBox cmbIdGroup;
+        private System.Windows.Forms.ComboBox cmbGroup;
         private System.Windows.Forms.Label lbIdGroup;
     }
 }

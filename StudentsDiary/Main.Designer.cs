@@ -33,7 +33,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvDiary = new System.Windows.Forms.DataGridView();
             this.btRefresh = new System.Windows.Forms.Button();
-            this.cmbSelectGroup = new System.Windows.Forms.ComboBox();
+            this.cmbGroup = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,24 +95,20 @@
             this.btRefresh.UseVisualStyleBackColor = false;
             this.btRefresh.Click += new System.EventHandler(this.btRefresh_Click);
             // 
-            // cmbSelectGroup
+            // cmbGroup
             // 
-            this.cmbSelectGroup.FormattingEnabled = true;
-            this.cmbSelectGroup.Items.AddRange(new object[] {
-            "Wszyscy",
-            "Grupa A",
-            "Grupa B"});
-            this.cmbSelectGroup.Location = new System.Drawing.Point(336, 12);
-            this.cmbSelectGroup.Name = "cmbSelectGroup";
-            this.cmbSelectGroup.Size = new System.Drawing.Size(121, 21);
-            this.cmbSelectGroup.TabIndex = 6;
+            this.cmbGroup.FormattingEnabled = true;
+            this.cmbGroup.Location = new System.Drawing.Point(336, 12);
+            this.cmbGroup.Name = "cmbGroup";
+            this.cmbGroup.Size = new System.Drawing.Size(121, 21);
+            this.cmbGroup.TabIndex = 6;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 516);
-            this.Controls.Add(this.cmbSelectGroup);
+            this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.btRefresh);
             this.Controls.Add(this.dgvDiary);
             this.Controls.Add(this.btnDelete);
@@ -137,7 +133,7 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DataGridView dgvDiary;
         private System.Windows.Forms.Button btRefresh;
-        private System.Windows.Forms.ComboBox cmbSelectGroup;
+        private System.Windows.Forms.ComboBox cmbGroup;
     }
 }
 

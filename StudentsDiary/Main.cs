@@ -10,6 +10,7 @@ namespace StudentsDiary
     public partial class Main : Form
     {
         private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path);
+        private List<Group> _groups;
 
         public bool IsMaximized
         {
@@ -27,9 +28,21 @@ namespace StudentsDiary
         {
             InitializeComponent();
             RefreshDiary();
+
             SetColumnsHeaders();
+
+            _groups = GroupsHelper.GetGroups("Wszyscy");
+            InitGroupsComboBox();
+
             if (IsMaximized)
                 WindowState = FormWindowState.Maximized;
+        }
+
+        private void InitGroupsComboBox()
+        {
+            cmbGroup.DataSource = _groups;
+            cmbGroup.DisplayMember = "GroupName";
+            cmbGroup.ValueMember = "Id";
         }
 
         public void RefreshDiary()
@@ -40,15 +53,15 @@ namespace StudentsDiary
         }
         private void SetColumnsHeaders()
         {
-            dgvDiary.Columns[0].HeaderText = "Id";
-            dgvDiary.Columns[1].HeaderText = "Imie";
-            dgvDiary.Columns[2].HeaderText = "Nazwisko";
-            dgvDiary.Columns[3].HeaderText = "Matematyka";
-            dgvDiary.Columns[4].HeaderText = "J. Polski";
-            dgvDiary.Columns[5].HeaderText = "J. Angielski";
-            dgvDiary.Columns[6].HeaderText = "Uwagi";
-            dgvDiary.Columns[7].HeaderText = "Dodatkowe zajęcia:";
-            dgvDiary.Columns[8].HeaderText = "Id grupy";
+            dgvDiary.Columns[nameof(Student.Id)].HeaderText = "Id";
+            dgvDiary.Columns[nameof(Student.Name)].HeaderText = "Imie";
+            dgvDiary.Columns[nameof(Student.Surname)].HeaderText = "Nazwisko";
+            dgvDiary.Columns[nameof(Student.Math)].HeaderText = "Matematyka";
+            dgvDiary.Columns[nameof(Student.LangPolish)].HeaderText = "J. Polski";
+            dgvDiary.Columns[nameof(Student.LangEnglish)].HeaderText = "J. Angielski";
+            dgvDiary.Columns[nameof(Student.Comments)].HeaderText = "Uwagi";
+            dgvDiary.Columns[nameof(Student.AdditionalLesson)].HeaderText = "Dodatkowe zajęcia:";
+            dgvDiary.Columns[nameof(Student.IdGroup)].Visible = false;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -61,6 +74,7 @@ namespace StudentsDiary
         private void AddEditStudent_FormClosing(object sender, FormClosingEventArgs e)
         {
             RefreshDiary();
+            RefreshStudentsGroups();
         }
         private void btnEdit_Click(object sender, EventArgs e)
         {
@@ -96,6 +110,7 @@ namespace StudentsDiary
             students.RemoveAll(x => x.Id == id);
             _fileHelper.SerializeToFile(students);
             RefreshDiary();
+            RefreshStudentsGroups();
         }
 
         private void Main_FormClosed(object sender, FormClosedEventArgs e)
@@ -107,29 +122,22 @@ namespace StudentsDiary
             Settings.Default.Save();
         }
 
-        private void RefreshStudents()
+        private void RefreshStudentsGroups()
         {
             var students = _fileHelper.DeserializerFromFile();
-            if (cmbSelectGroup.SelectedIndex == 0)
-            {
+            var selectedItem = (cmbGroup.SelectedItem as Group).Id;
+
+            if ( selectedItem == 0)
                 students = students.OrderBy(x => x.Id).ToList();
-                dgvDiary.DataSource = students;
-            }
-            else if (cmbSelectGroup.SelectedIndex == 1)
-            {
-                students = students.FindAll(x => x.IdGroup == "Grupa A");
-                dgvDiary.DataSource = students;
-            }
-            else if (cmbSelectGroup.SelectedIndex == 2)
-            {
-                students = students.FindAll(x => x.IdGroup == "Grupa B");
-                dgvDiary.DataSource = students;
-            }
+            else
+                students = students.FindAll(x => x.IdGroup == selectedItem);
+
+            dgvDiary.DataSource = students;
         }
 
         private void btRefresh_Click(object sender, EventArgs e)
         {
-            RefreshStudents();
+            RefreshStudentsGroups();
         }
     }
 }

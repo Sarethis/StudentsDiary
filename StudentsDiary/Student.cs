@@ -10,6 +10,6 @@
         public string LangEnglish { get; set; }
         public string Comments { get; set; }
         public bool AdditionalLesson { get; set; }
-        public string IdGroup { get; set; }
+        public int IdGroup { get; set; }
     }
 }
