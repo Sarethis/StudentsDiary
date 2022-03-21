@@ -9,7 +9,8 @@ namespace StudentsDiary
 {
     internal static class Program
     {
-        public static string path = Path.Combine(Environment.CurrentDirectory, "Students.xml");
+        public static string path = Path.Combine(Environment.CurrentDirectory, "Students");
+        public static bool xmlJsonChangerB;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

@@ -9,7 +9,7 @@ namespace StudentsDiary
     public partial class AddEditStudent : Form
     {
         private int _studentId;
-        private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path);
+        private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path, Program.xmlJsonChangerB);
         private Student _student;
         private List<Group> _groups;
         public AddEditStudent(int id = 0)

@@ -34,6 +34,8 @@
             this.dgvDiary = new System.Windows.Forms.DataGridView();
             this.btRefresh = new System.Windows.Forms.Button();
             this.cmbGroup = new System.Windows.Forms.ComboBox();
+            this.btnSerializeToDifferentDataBase = new System.Windows.Forms.Button();
+            this.ckbJSON = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +105,35 @@
             this.cmbGroup.Size = new System.Drawing.Size(121, 21);
             this.cmbGroup.TabIndex = 6;
             // 
+            // btnSerializeToDifferentDataBase
+            // 
+            this.btnSerializeToDifferentDataBase.BackColor = System.Drawing.Color.Olive;
+            this.btnSerializeToDifferentDataBase.Location = new System.Drawing.Point(850, 12);
+            this.btnSerializeToDifferentDataBase.Name = "btnSerializeToDifferentDataBase";
+            this.btnSerializeToDifferentDataBase.Size = new System.Drawing.Size(167, 23);
+            this.btnSerializeToDifferentDataBase.TabIndex = 7;
+            this.btnSerializeToDifferentDataBase.Text = "Seriazlize to second DataBase";
+            this.btnSerializeToDifferentDataBase.UseVisualStyleBackColor = false;
+            this.btnSerializeToDifferentDataBase.Click += new System.EventHandler(this.btnSerializeToDifferentDataBase_Click);
+            // 
+            // ckbJSON
+            // 
+            this.ckbJSON.AutoSize = true;
+            this.ckbJSON.Location = new System.Drawing.Point(760, 16);
+            this.ckbJSON.Name = "ckbJSON";
+            this.ckbJSON.Size = new System.Drawing.Size(84, 17);
+            this.ckbJSON.TabIndex = 8;
+            this.ckbJSON.Text = "Using JSON";
+            this.ckbJSON.UseVisualStyleBackColor = true;
+            this.ckbJSON.CheckedChanged += new System.EventHandler(this.ckbJSON_CheckedChanged);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 516);
+            this.Controls.Add(this.ckbJSON);
+            this.Controls.Add(this.btnSerializeToDifferentDataBase);
             this.Controls.Add(this.cmbGroup);
             this.Controls.Add(this.btRefresh);
             this.Controls.Add(this.dgvDiary);
@@ -120,6 +146,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDiary)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -134,6 +161,8 @@
         private System.Windows.Forms.DataGridView dgvDiary;
         private System.Windows.Forms.Button btRefresh;
         private System.Windows.Forms.ComboBox cmbGroup;
+        private System.Windows.Forms.Button btnSerializeToDifferentDataBase;
+        private System.Windows.Forms.CheckBox ckbJSON;
     }
 }
 

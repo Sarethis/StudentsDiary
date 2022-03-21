@@ -9,7 +9,7 @@ namespace StudentsDiary
 {
     public partial class Main : Form
     {
-        private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path);
+        private FileHelper<List<Student>> _fileHelper = new FileHelper<List<Student>>(Program.path,Program.xmlJsonChangerB);
         private List<Group> _groups;
 
         public bool IsMaximized
@@ -53,6 +53,7 @@ namespace StudentsDiary
         }
         private void SetColumnsHeaders()
         {
+            //dgvDiary.Columns[nameof(Student.Comments)].DisplayIndex = 1;
             dgvDiary.Columns[nameof(Student.Id)].HeaderText = "Id";
             dgvDiary.Columns[nameof(Student.Name)].HeaderText = "Imie";
             dgvDiary.Columns[nameof(Student.Surname)].HeaderText = "Nazwisko";
@@ -138,6 +139,23 @@ namespace StudentsDiary
         private void btRefresh_Click(object sender, EventArgs e)
         {
             RefreshStudentsGroups();
+        }
+        
+        private void ckbJSON_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ckbJSON.Checked)
+                Program.xmlJsonChangerB = true;
+            else
+                Program.xmlJsonChangerB = false;
+            _fileHelper = new FileHelper<List<Student>>(Program.path, Program.xmlJsonChangerB);
+            RefreshDiary();
+            RefreshStudentsGroups();
+        }
+
+        private void btnSerializeToDifferentDataBase_Click(object sender, EventArgs e)
+        {
+            var students = _fileHelper.DeserializerFromFile();
+            _fileHelper.SerializeToSecondDataBase(students);
         }
     }
 }
